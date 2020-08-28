@@ -56,7 +56,8 @@ gcc -o _out/{_sPlatform}_{_sOpt}/2dmark.elf  "_out/{_sPlatform}_{_sOpt}/asm.o" "
 ;-Wl,--gc-sections -ffunction-sections -fdata-sections
 ;-g
 >
-objcopy -O binary  -j .text -B i386 _out/{_sPlatform}_{_sOpt}/2dmark.elf  _out/{_sPlatform}_{_sOpt}/2dmark.img
+;objcopy -O binary  -j .text  _out/{_sPlatform}_{_sOpt}/2dmark.elf  _out/{_sPlatform}_{_sOpt}/2dmark.img
+objcopy -O binary  -j .boot -j .data  -j .text  -j .bss   _out/{_sPlatform}_{_sOpt}/2dmark.elf  _out/{_sPlatform}_{_sOpt}/2dmark.img
 ;objcopy  -I binary -O elf32-i386 -B i386  _out/{_sPlatform}_{_sOpt}/2dmark.elf  _out/{_sPlatform}_{_sOpt}/2dmark.img
 >
 objdump -f  _out/{_sPlatform}_{_sOpt}/2dmark.img
