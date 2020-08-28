@@ -98,6 +98,8 @@ Intr_Init(void)
    int i;
 
    Intr_Disable();
+	
+	
 
    IDTType *idt = IDT;
    IntrTrampolineType *tramp = IntrTrampoline;
@@ -219,6 +221,7 @@ Intr_Init(void)
    }
 
    Intr_Enable();
+   
 }
 
 

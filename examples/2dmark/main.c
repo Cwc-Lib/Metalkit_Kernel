@@ -131,12 +131,31 @@ runBenchmark()
  *    Initialization and results reporting.
  */
 
-void
-abc(void)
+ int main(){
+	 return 0;
+ }
+ #include "apm.h"
+#include "bios.h"
+#include "intr.h"
+int abc(void)
 {
-   Intr_Init();
-   Intr_SetFaultHandlers(SVGA_DefaultFaultHandler);
+	   APM_Init();
+	//  while(1){}	
+
+     Intr_SetFaultHandlers(SVGA_DefaultFaultHandler);
+	  
+	  Intr_Init();
    ConsoleVGA_Init();
+		//    while(1){}	
+	//  while(1){}	
+ 
+   
+ //while(1){}	
+ 
+     
+   
+
+
    SVGA_Init();
 
    runBenchmark();
@@ -144,5 +163,5 @@ abc(void)
    SVGA_Disable();
    VMBackdoor_VGAScreenshot();
 
-  // return 0;
+   return 0;
 }

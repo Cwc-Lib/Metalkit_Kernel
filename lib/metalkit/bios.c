@@ -93,7 +93,7 @@ BIOSCallInternal(void)
     * Return here. The rest of this code is never run directly,
     * but we need to prevent GCC from optimizing it out.
     */
-   asm volatile("jmp BIOSTrampolineEnd\n");
+   asm volatile("jmp _BIOSTrampolineEnd\n");
 
    /*
     * This is a 16-bit assembly-language trampoline, relocated at
@@ -104,7 +104,7 @@ BIOSCallInternal(void)
     * This code is never run directly.
     */
 
-   asm volatile("BIOSTrampoline: .code16");
+   asm volatile("_BIOSTrampoline: .code16");
 
     /*
      * Switch to our 16-bit data segment.
@@ -130,8 +130,8 @@ BIOSCallInternal(void)
     * XXX: I'm not sure how to do this address calculation cleanly.
     *      Currently I'm hardcoding the address of the relocated trampoline.
     */
-   asm volatile("ljmp $0, $(BIOSTrampolineCS16 - BIOSTrampoline + 0x7C00)\n"
-                "BIOSTrampolineCS16: \n");
+   asm volatile("ljmp $0, $(_BIOSTrampolineCS16 - _BIOSTrampoline + 0x7C00)\n"
+                "_BIOSTrampolineCS16: \n");
 
    /*
     * Set up the real-mode stack and %cs register.
@@ -154,7 +154,7 @@ BIOSCallInternal(void)
     * patched at runtime (after relocation) to point to the
     * right interrupt vector.
     */
-   asm volatile("BIOSTrampolineVector: \n"
+   asm volatile("_BIOSTrampolineVector: \n"
                 "int $0xFF");
 
    /*
@@ -186,7 +186,7 @@ BIOSCallInternal(void)
    asm volatile("data32 ljmp %0, $BIOSReturn32 \n"
                 :: "i" (BOOT_CODE_SEG));
 
-   asm volatile("BIOSTrampolineEnd: .code32 \n");
+   asm volatile("_BIOSTrampolineEnd: .code32 \n");
 }
 
 extern struct {

@@ -40,6 +40,7 @@ gcc -o _out/{_sPlatform}_{_sOpt}/2dmark.elf  "_out/{_sPlatform}_{_sOpt}/asm.o" "
 -{vIncl}
 -{vFlag}
 -Wl,-T,"../lib/metalkit/image.ld"
+-Wl,-Ttext=0x20000
 -Wl,--gc-sections -ffunction-sections -fdata-sections
 -nostdlib
 >
@@ -56,13 +57,17 @@ gcc -o _out/{_sPlatform}_{_sOpt}/2dmark.elf  "_out/{_sPlatform}_{_sOpt}/asm.o" "
 ;-Wl,--gc-sections -ffunction-sections -fdata-sections
 ;-g
 >
-;objcopy -O binary  -j .text  _out/{_sPlatform}_{_sOpt}/2dmark.elf  _out/{_sPlatform}_{_sOpt}/2dmark.img
+;objcopy -O binary   _out/{_sPlatform}_{_sOpt}/2dmark.elf  _out/{_sPlatform}_{_sOpt}/2dmark.img
 objcopy -O binary  -j .boot -j .data  -j .text  -j .bss   _out/{_sPlatform}_{_sOpt}/2dmark.elf  _out/{_sPlatform}_{_sOpt}/2dmark.img
 ;objcopy  -I binary -O elf32-i386 -B i386  _out/{_sPlatform}_{_sOpt}/2dmark.elf  _out/{_sPlatform}_{_sOpt}/2dmark.img
 >
-objdump -f  _out/{_sPlatform}_{_sOpt}/2dmark.img
+;objdump -f  _out/{_sPlatform}_{_sOpt}/2dmark.img
+;objdump  -m i386 -b  binary  -D _out/{_sPlatform}_{_sOpt}/2dmark.img
 >
-
+;objdump -m i386 -b  binary  -D  _out/{_sPlatform}_{_sOpt}/ori.img
+;objdump -m i386 -b  binary  -s _out/{_sPlatform}_{_sOpt}/ori.img
+;objdump -m i386 -b  binary  -F _out/{_sPlatform}_{_sOpt}/ori.img
+>
 ;objdump -f  ../bin/2dmark.img
 
 ;Link a temp PE file
