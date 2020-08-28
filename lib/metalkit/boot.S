@@ -83,7 +83,7 @@
          * other symbols must be provided by the linker script. See
          * "image.ld" for the actual partition size and LDT calculations.
          */
-        .extern main
+        .extern _abc
         .extern _end
         .extern _edata
         .extern _bss_size
@@ -447,7 +447,7 @@ entry32_gdt_done:
          * interrupt handlers, no reason to stop them.
          */
 
-        call    main
+        call    _abc
 halt_loop:
         hlt
         jmp     halt_loop

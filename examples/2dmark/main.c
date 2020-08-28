@@ -131,8 +131,8 @@ runBenchmark()
  *    Initialization and results reporting.
  */
 
-int
-main(void)
+void
+abc(void)
 {
    Intr_Init();
    Intr_SetFaultHandlers(SVGA_DefaultFaultHandler);
@@ -144,5 +144,5 @@ main(void)
    SVGA_Disable();
    VMBackdoor_VGAScreenshot();
 
-   return 0;
+  // return 0;
 }

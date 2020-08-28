@@ -17,22 +17,46 @@
 -{vFlag}
 >
 ;Build Main Example
--c ../exemple/simple-blit/ -o obj/cpp_{_sPlatform}_{_sOpt}/lib/exemple/simple-blit/
+-c ../examples/2dmark/ -o obj/cpp_{_sPlatform}_{_sOpt}/examples/2dmark/
 -{vIncl}
 -{vFlag}
 >
+;Group togehter
+-o obj/cpp_{_sPlatform}_{_sOpt}/  -#To _out/{_sPlatform}_{_sOpt}/App.a
+;"../lib/metalkit/boot.S"
+>
+gcc  -o  _out/{_sPlatform}_{_sOpt}/asm.o -c  "../lib/metalkit/boot.S" 
+-m32  -march=i686
+>
+
+;nasm -f elf -o hello-stack_32.o hello-stack_32.asm
+;ld -m elf_i386 -o hello-stack_32 hello-stack_32.o
+>
+;gcc  -c  "../lib/metalkit/boot.S"  -o  _out/{_sPlatform}_{_sOpt}/asm.o
+;-{vIncl}
+;-{vFlag}
+>
+
+ld -o _out/{_sPlatform}_{_sOpt}/2dmark.img  "_out/{_sPlatform}_{_sOpt}/asm.o" "_out/{_sPlatform}_{_sOpt}/App.a" 
+-nostdlib -T "../lib/metalkit/image.ld"
+>
+;ld -o obj/cpp_{_sPlatform}_{_sOpt}/App.elf  "_out/{_sPlatform}_{_sOpt}/asm.o" "E:\Data\setting\vmware_svga\cwc\obj\cpp_Windows_Debug\examples\2dmark\main.o"
+
+
 ;https://stackoverflow.com/questions/30939593/mingws-ld-cannot-perform-pe-operations-on-non-pe-output-file
 ;http://www.independent-software.com/linking-a-flat-binary-from-c-with-mingw.html
-;Group all objects
--o obj/cpp_{_sPlatform}_{_sOpt}/ -#To _out/{_sPlatform}_{_sOpt}/App.exe
--Wl,-T,"../lib/metalkit/image.ld"
--Wl,--gc-sections -ffunction-sections -fdata-sections
--nostdlib 
--Wl,-Ttext=0x20000,-nostdlib
+;-m32 -nostdlib  -o  "_out/{_sPlatform}_{_sOpt}/App.img"  "_out/{_sPlatform}_{_sOpt}/App.a" "../lib/metalkit/boot.S"
+;-Wl,-T,"../lib/metalkit/image.ld"
+;-Wl,--gc-sections -ffunction-sections -fdata-sections
+;-g
 >
-objcopy -O binary  _out/{_sPlatform}_{_sOpt}/App.exe _out/{_sPlatform}_{_sOpt}/App.bin
+;objcopy -O binary  _out/{_sPlatform}_{_sOpt}/App.exe _out/{_sPlatform}_{_sOpt}/App.bin
 >
-objdump -f  _out/{_sPlatform}_{_sOpt}/App.bin
+objdump -f  _out/{_sPlatform}_{_sOpt}/App.img
+>
+
+;objdump -f  ../bin/2dmark.img
+
 ;Link a temp PE file
 ;ld -o obj/cpp_{_sPlatform}_{_sOpt}/App.temp obj/cpp_{_sPlatform}_{_sOpt}/App.a
 ; --image-base 0xFF000 --oformat binary 

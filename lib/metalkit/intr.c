@@ -184,7 +184,7 @@ Intr_Init(void)
       tramp++;
    }
 
-   asm volatile ("lidt IDTDesc");
+   asm volatile ("lidt _IDTDesc");
 
    typedef struct {
       uint8 port, data;
@@ -271,7 +271,7 @@ Intr_InitContext(IntrContext *ctx, uint32 *stack, IntrContextFn main)
  *    overhead of an actual interrupt invocation.
  */
 
-asm (".global Intr_SaveContext \n Intr_SaveContext:"
+asm (".global _Intr_SaveContext \n _Intr_SaveContext:"
 
      "pusha \n"
 
@@ -317,7 +317,7 @@ asm (".global Intr_SaveContext \n Intr_SaveContext:"
  *    saved state.
  */
 
-asm(".global Intr_RestoreContext \n Intr_RestoreContext:"
+asm(".global _Intr_RestoreContext \n _Intr_RestoreContext:"
 
     "mov     4(%esp), %esi \n"   // Load pointer to IntrContext
     "mov     12(%esi), %esp \n"  // Switch stacks

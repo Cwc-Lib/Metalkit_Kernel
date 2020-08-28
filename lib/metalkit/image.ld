@@ -104,9 +104,8 @@ _partition_chs_sector_byte = _partition_chs_sector |
  * into the GDT at link time. We can't do this entirely in boot.S,
  * because the LDT address isn't contiguous in the GDT.
  */
- /*
 _ldt_byte0 = (LDT >> 0) & 0xff;
 _ldt_byte1 = (LDT >> 8) & 0xff;
 _ldt_byte2 = (LDT >> 16) & 0xff;
 _ldt_byte3 = (LDT >> 24) & 0xff;
-*/
+
