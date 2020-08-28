@@ -94,8 +94,7 @@ Matrix_Perspective(Matrix self,   // OUT
    float f = 1.0 / tanf(fovY * (M_PI / 180) / 2);
    float q = zFar / (zFar - zNear);
 
-  // memset(self, 0, sizeof self);
-   memset(self, 0, sizeof(Matrix));
+   memset(self, 0, sizeof self);
 
    self[EL(0,0)] = f / aspect;
    self[EL(1,1)] = f;

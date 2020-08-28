@@ -173,8 +173,8 @@ typedef struct IntrContext {
 
 #define Intr_GetContext(arg)  ((IntrContext*) &(&arg)[1])
 
-uint32 Intr_SaveContext(IntrContext *ctx);
-void Intr_RestoreContext(IntrContext *ctx);
+uint32 Intr_SaveContext(IntrContext *ctx) asm("Intr_SaveContext");
+void Intr_RestoreContext(IntrContext *ctx) asm("Intr_RestoreContext");
 fastcall void Intr_InitContext(IntrContext *ctx, uint32 *stack, IntrContextFn main);
 
 /*

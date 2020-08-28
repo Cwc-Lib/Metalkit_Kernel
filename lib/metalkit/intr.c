@@ -67,7 +67,7 @@ const struct {
 } PACKED IDTDesc = {
    .limit = NUM_INTR_VECTORS * 8 - 1,
    .address = IDT,
-};
+} 	;
 
 IntrTrampolineType ALIGNED(4) IntrTrampoline[NUM_INTR_VECTORS];
 
@@ -98,8 +98,6 @@ Intr_Init(void)
    int i;
 
    Intr_Disable();
-	
-	
 
    IDTType *idt = IDT;
    IntrTrampolineType *tramp = IntrTrampoline;
@@ -186,7 +184,8 @@ Intr_Init(void)
       tramp++;
    }
 
-   asm volatile ("lidt _IDTDesc");
+  // asm volatile ("lidt IDTDesc");
+   asm volatile ("lidt _IDTDesc");//TODO
 
    typedef struct {
       uint8 port, data;
@@ -221,7 +220,6 @@ Intr_Init(void)
    }
 
    Intr_Enable();
-   
 }
 
 
@@ -274,7 +272,7 @@ Intr_InitContext(IntrContext *ctx, uint32 *stack, IntrContextFn main)
  *    overhead of an actual interrupt invocation.
  */
 
-asm (".global _Intr_SaveContext \n _Intr_SaveContext:"
+asm (".global Intr_SaveContext \n Intr_SaveContext:"
 
      "pusha \n"
 
@@ -320,7 +318,7 @@ asm (".global _Intr_SaveContext \n _Intr_SaveContext:"
  *    saved state.
  */
 
-asm(".global _Intr_RestoreContext \n _Intr_RestoreContext:"
+asm(".global Intr_RestoreContext \n Intr_RestoreContext:"
 
     "mov     4(%esp), %esi \n"   // Load pointer to IntrContext
     "mov     12(%esi), %esp \n"  // Switch stacks

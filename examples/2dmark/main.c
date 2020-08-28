@@ -131,15 +131,17 @@ runBenchmark()
  *    Initialization and results reporting.
  */
 
- int main(){
+ int __main(){
 	 return 0;
  }
- #include "apm.h"
+#include "apm.h"
 #include "bios.h"
 #include "intr.h"
-int abc(void)
+
+extern int main(void) asm("main");
+int main(void)
 {
-	   APM_Init();
+	   //APM_Init();
 	//  while(1){}	
 
      Intr_SetFaultHandlers(SVGA_DefaultFaultHandler);

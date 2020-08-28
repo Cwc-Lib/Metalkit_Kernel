@@ -108,4 +108,3 @@ _ldt_byte0 = (LDT >> 0) & 0xff;
 _ldt_byte1 = (LDT >> 8) & 0xff;
 _ldt_byte2 = (LDT >> 16) & 0xff;
 _ldt_byte3 = (LDT >> 24) & 0xff;
-
