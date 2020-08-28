@@ -26,7 +26,7 @@
 ;"../lib/metalkit/boot.S"
 >
 gcc  -o  _out/{_sPlatform}_{_sOpt}/asm.o -c  "../lib/metalkit/boot.S" 
--m32  -march=i686
+-{vFlag}
 >
 
 ;nasm -f elf -o hello-stack_32.o hello-stack_32.asm
@@ -39,6 +39,7 @@ gcc  -o  _out/{_sPlatform}_{_sOpt}/asm.o -c  "../lib/metalkit/boot.S"
 
 ld -o _out/{_sPlatform}_{_sOpt}/2dmark.elf  "_out/{_sPlatform}_{_sOpt}/asm.o" "_out/{_sPlatform}_{_sOpt}/App.a" 
 -nostdlib -T "../lib/metalkit/image.ld"
+--gc-sections -ffunction-sections -fdata-sections
 >
 ;ld -o obj/cpp_{_sPlatform}_{_sOpt}/App.elf  "_out/{_sPlatform}_{_sOpt}/asm.o" "E:\Data\setting\vmware_svga\cwc\obj\cpp_Windows_Debug\examples\2dmark\main.o"
 
@@ -51,6 +52,7 @@ ld -o _out/{_sPlatform}_{_sOpt}/2dmark.elf  "_out/{_sPlatform}_{_sOpt}/asm.o" "_
 ;-g
 >
 objcopy -O binary  -j .text _out/{_sPlatform}_{_sOpt}/2dmark.elf  _out/{_sPlatform}_{_sOpt}/2dmark.img
+;objcopy  -I binary -O elf32-i386 -B i386  _out/{_sPlatform}_{_sOpt}/2dmark.elf  _out/{_sPlatform}_{_sOpt}/2dmark.img
 >
 objdump -f  _out/{_sPlatform}_{_sOpt}/2dmark.img
 >
