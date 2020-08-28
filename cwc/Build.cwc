@@ -37,7 +37,7 @@ gcc  -o  _out/{_sPlatform}_{_sOpt}/asm.o -c  "../lib/metalkit/boot.S"
 ;-{vFlag}
 >
 
-ld -o _out/{_sPlatform}_{_sOpt}/2dmark.img  "_out/{_sPlatform}_{_sOpt}/asm.o" "_out/{_sPlatform}_{_sOpt}/App.a" 
+ld -o _out/{_sPlatform}_{_sOpt}/2dmark.elf  "_out/{_sPlatform}_{_sOpt}/asm.o" "_out/{_sPlatform}_{_sOpt}/App.a" 
 -nostdlib -T "../lib/metalkit/image.ld"
 >
 ;ld -o obj/cpp_{_sPlatform}_{_sOpt}/App.elf  "_out/{_sPlatform}_{_sOpt}/asm.o" "E:\Data\setting\vmware_svga\cwc\obj\cpp_Windows_Debug\examples\2dmark\main.o"
@@ -50,9 +50,9 @@ ld -o _out/{_sPlatform}_{_sOpt}/2dmark.img  "_out/{_sPlatform}_{_sOpt}/asm.o" "_
 ;-Wl,--gc-sections -ffunction-sections -fdata-sections
 ;-g
 >
-;objcopy -O binary  _out/{_sPlatform}_{_sOpt}/App.exe _out/{_sPlatform}_{_sOpt}/App.bin
+objcopy -O binary  -j .text _out/{_sPlatform}_{_sOpt}/2dmark.elf  _out/{_sPlatform}_{_sOpt}/2dmark.img
 >
-objdump -f  _out/{_sPlatform}_{_sOpt}/App.img
+objdump -f  _out/{_sPlatform}_{_sOpt}/2dmark.img
 >
 
 ;objdump -f  ../bin/2dmark.img
