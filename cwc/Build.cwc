@@ -1,3 +1,6 @@
+;https://stackoverflow.com/questions/1034852/adding-leading-underscores-to-assembly-symbols-with-gcc-on-win32
+;https://bugsdb.com/_en/debug/0041895496c8faea24a3799739967f88
+;-fleading-underscore
 -{vFlag}=""
 ;-D_PLATFORM_WINDOWS
 >
@@ -10,6 +13,7 @@
 	-m32 -ffreestanding -nostdinc -fno-stack-protector
 	-Os -fweb
 	-march=i686 -ffast-math -funsafe-math-optimizations
+	-fleading-underscore
 >
 ;Build libs
 -c ../lib/ -o obj/cpp_{_sPlatform}_{_sOpt}/lib/
@@ -20,6 +24,7 @@
 -c ../examples/2dmark/ -o obj/cpp_{_sPlatform}_{_sOpt}/examples/2dmark/
 -{vIncl}
 -{vFlag}
+-fleading-underscore
 >
 ;Group togehter
 -o obj/cpp_{_sPlatform}_{_sOpt}/  -#To _out/{_sPlatform}_{_sOpt}/App.a
@@ -27,6 +32,7 @@
 >
 gcc  -o  _out/{_sPlatform}_{_sOpt}/asm.o -c  "../lib/metalkit/boot.S" 
 -{vFlag}
+-fleading-underscore
 >
 
 ;nasm -f elf -o hello-stack_32.o hello-stack_32.asm
@@ -43,6 +49,7 @@ gcc -o _out/{_sPlatform}_{_sOpt}/2dmark.elf  "_out/{_sPlatform}_{_sOpt}/asm.o" "
 -Wl,-Ttext=0x20000
 -Wl,--gc-sections -ffunction-sections -fdata-sections
 -nostdlib
+-fleading-underscore
 >
 ;ld -o _out/{_sPlatform}_{_sOpt}/2dmark.elf  "_out/{_sPlatform}_{_sOpt}/asm.o" "_out/{_sPlatform}_{_sOpt}/App.a" 
 ;-nostdlib -T "../lib/metalkit/image.ld"
