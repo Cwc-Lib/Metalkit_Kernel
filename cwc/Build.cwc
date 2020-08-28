@@ -1,0 +1,50 @@
+-{vFlag}=""
+;-D_PLATFORM_WINDOWS
+>
+-{vIncl}=
+-I ../lib/metalkit/
+-I ../lib/refdriver/
+-I ../lib/util/
+-I ../lib/vmware/
+-{vFlag}=
+	-m32 -ffreestanding -nostdinc -fno-stack-protector
+	-Os -fweb
+	-march=i686 -ffast-math -funsafe-math-optimizations
+>
+;Build libs
+-c ../lib/ -o obj/cpp_{_sPlatform}_{_sOpt}/lib/
+-{vIncl}
+-{vFlag}
+>
+;Build Main Example
+-c ../exemple/simple-blit/ -o obj/cpp_{_sPlatform}_{_sOpt}/lib/exemple/simple-blit/
+-{vIncl}
+-{vFlag}
+>
+;https://stackoverflow.com/questions/30939593/mingws-ld-cannot-perform-pe-operations-on-non-pe-output-file
+;http://www.independent-software.com/linking-a-flat-binary-from-c-with-mingw.html
+;Group all objects
+-o obj/cpp_{_sPlatform}_{_sOpt}/ -#To _out/{_sPlatform}_{_sOpt}/App.exe
+-Wl,-T,"../lib/metalkit/image.ld"
+-Wl,--gc-sections -ffunction-sections -fdata-sections
+-nostdlib 
+-Wl,-Ttext=0x20000,-nostdlib
+>
+objcopy -O binary  _out/{_sPlatform}_{_sOpt}/App.exe _out/{_sPlatform}_{_sOpt}/App.bin
+>
+objdump -f  _out/{_sPlatform}_{_sOpt}/App.bin
+;Link a temp PE file
+;ld -o obj/cpp_{_sPlatform}_{_sOpt}/App.temp obj/cpp_{_sPlatform}_{_sOpt}/App.a
+; --image-base 0xFF000 --oformat binary 
+;-Wl,--gc-sections -ffunction-sections -fdata-sections
+;-nostdlib -Wl,-T,"../lib/metalkit/image.ld"
+>
+;Transform it in a non-PE:
+;objcopy -O binary  obj/cpp_{_sPlatform}_{_sOpt}/App.temp obj/cpp_{_sPlatform}_{_sOpt}/App.bin
+;-T "../lib/metalkit/image.ld" 
+>
+;Copy the result
+;-#Copy obj/cpp_{_sPlatform}_{_sOpt}/App.bin _out/{_sPlatform}_{_sOpt}/App.bin
+
+>
+;-#Run

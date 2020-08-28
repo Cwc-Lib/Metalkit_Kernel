@@ -1,0 +1,8 @@
+;Register Cwc before using a .cwmake
+>
+-{_sOpt}="OS"
+>
+-{_sDynamic}="so"
+>
+-#Run Build.cwc -{_wToolchain}= "VLianceTool/WebRT"
+-{vPreloadRc}="--preload-file Rc/@Rc/"
