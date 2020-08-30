@@ -56,3 +56,8 @@ bin/
 old/
 *.wdat
 _out/
+
+*.vmxf
+*.vmsd
+*.log
+nvram
