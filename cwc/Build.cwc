@@ -14,24 +14,29 @@
 	-Os -fweb
 	-march=i686 -ffast-math -funsafe-math-optimizations
 >
+;Copy the Rc & Create Output folder
+-#Copy Rc/ _out/{_sPlatform}_{_sOpt}/{pExample}
+>
 ;Build libs
 -c ../lib/ -o obj/cpp_{_sPlatform}_{_sOpt}/lib/
 -{vIncl}
 -{vFlag}
 >
 ;Build Main Example
--c ../metalkit_example/console/ -o obj/cpp_{_sPlatform}_{_sOpt}/examples/2dmark/
-;-c ../examples/2dmark/ -o obj/cpp_{_sPlatform}_{_sOpt}/examples/2dmark/
+-c ../examples/{pExample} -o obj/cpp_{_sPlatform}_{_sOpt}/examples/{pExample}
 -{vIncl}
 -{vFlag}
 >
-;Group togehter
--o obj/cpp_{_sPlatform}_{_sOpt}/  -#To _out/{_sPlatform}_{_sOpt}/App.a
+;Group Example
+-o obj/cpp_{_sPlatform}_{_sOpt}/examples/{pExample}  -#To obj/cpp_{_sPlatform}_{_sOpt}/example.a
 >
-gcc  -o  _out/{_sPlatform}_{_sOpt}/asm.o -c  "../lib/metalkit/boot.S" 
+;Group Lib
+-o obj/cpp_{_sPlatform}_{_sOpt}/lib/  -#To obj/cpp_{_sPlatform}_{_sOpt}/lib.a
+>
+gcc  -o  obj/cpp_{_sPlatform}_{_sOpt}/asm.o -c  "../lib/metalkit/boot.S" 
 -{vFlag}
 >
-gcc -o _out/{_sPlatform}_{_sOpt}/App.elf  "_out/{_sPlatform}_{_sOpt}/asm.o" "_out/{_sPlatform}_{_sOpt}/App.a" 
+gcc -o _out/{_sPlatform}_{_sOpt}/{pExample}App.elf  "obj/cpp_{_sPlatform}_{_sOpt}/asm.o" "obj/cpp_{_sPlatform}_{_sOpt}/example.a"  "obj/cpp_{_sPlatform}_{_sOpt}/lib.a" 
 -{vIncl}
 -{vFlag}
 -Wl,-T,"../lib/metalkit/image.ld"
@@ -45,14 +50,9 @@ gcc -o _out/{_sPlatform}_{_sOpt}/App.elf  "_out/{_sPlatform}_{_sOpt}/asm.o" "_ou
 ;-Wl,-T,"../lib/metalkit/image.ld"
 ;-Wl,--gc-sections -ffunction-sections -fdata-sections
 >
-objcopy -O binary   _out/{_sPlatform}_{_sOpt}/App.elf  _out/{_sPlatform}_{_sOpt}/App.img
+objcopy -O binary   _out/{_sPlatform}_{_sOpt}/{pExample}App.elf  _out/{_sPlatform}_{_sOpt}/{pExample}App.img
 >
-objdump -f  _out/{_sPlatform}_{_sOpt}/App.elf
->
-objdump -h _out/{_sPlatform}_{_sOpt}/App.elf
->
-;Copy the Rc
--#Copy Rc/ _out/{_sPlatform}_{_sOpt}/
-
+;objdump -f  _out/{_sPlatform}_{_sOpt}/App.elf
+objdump -h _out/{_sPlatform}_{_sOpt}/{pExample}App.elf
 >
 ;-#Run
