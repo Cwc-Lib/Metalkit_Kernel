@@ -2,12 +2,21 @@
 >
 -{_sOpt}="Debug"
 >
--{sExample}="metalkit__apm-test"
-;-{pExample}="metalkit/console/"
-;-{pExample}="metalkit/datafile/"
-;-{pExample}="metalkit/keyboard/"
-;-{pExample}="metalkit/scanpci/"
-;-{pExample}="metalkit/threading/"
+;-{sExample}="metalkit__apm-test"
+;-{sExample}="metalkit__console"
+;-{sExample}="metalkit__datafile"
+;-{sExample}="metalkit__keyboard"
+-{sExample}="metalkit__scanpci"
+;-{sExample}="metalkit__threading"
+;-{sExample}="metalkit__timer"
+;-{sExample}="metalkit__vbe-info"
+;-{sExample}="metalkit__vbe-palette"
+;-{sExample}="metalkit__vbe-simple"
+;-{sExample}="vmware__2dmark"
+;-{sExample}="vmware__backdoor-tclo"
+;-{sExample}="vmware__blit-cube"
+;-{sExample}="vmware__bunnies"
+;-{sExample}="vmware__cube"
 
 
 >
