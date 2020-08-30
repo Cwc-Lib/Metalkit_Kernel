@@ -2,8 +2,13 @@
 >
 -{_sOpt}="Debug"
 >
--{pExample}="metalkit/console/"
->
--{_sDynamic}="dll"
+-{sExample}="metalkit__apm-test"
+;-{pExample}="metalkit/console/"
+;-{pExample}="metalkit/datafile/"
+;-{pExample}="metalkit/keyboard/"
+;-{pExample}="metalkit/scanpci/"
+;-{pExample}="metalkit/threading/"
+
+
 >
 -#Run Build.cwc -{_wToolchain}= VLianceTool/LibRT[Ghost]
