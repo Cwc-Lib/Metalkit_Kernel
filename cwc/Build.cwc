@@ -13,7 +13,6 @@
 	-m32 -ffreestanding -nostdinc -fno-stack-protector
 	-Os -fweb
 	-march=i686 -ffast-math -funsafe-math-optimizations
-	-fleading-underscore
 >
 ;Build libs
 -c ../lib/ -o obj/cpp_{_sPlatform}_{_sOpt}/lib/
@@ -25,74 +24,35 @@
 ;-c ../examples/2dmark/ -o obj/cpp_{_sPlatform}_{_sOpt}/examples/2dmark/
 -{vIncl}
 -{vFlag}
--fleading-underscore
 >
 ;Group togehter
 -o obj/cpp_{_sPlatform}_{_sOpt}/  -#To _out/{_sPlatform}_{_sOpt}/App.a
-;"../lib/metalkit/boot.S"
 >
 gcc  -o  _out/{_sPlatform}_{_sOpt}/asm.o -c  "../lib/metalkit/boot.S" 
 -{vFlag}
--fleading-underscore
 >
-
-;nasm -f elf -o hello-stack_32.o hello-stack_32.asm
-;ld -m elf_i386 -o hello-stack_32 hello-stack_32.o
->
-;gcc  -c  "../lib/metalkit/boot.S"  -o  _out/{_sPlatform}_{_sOpt}/asm.o
-;-{vIncl}
-;-{vFlag}
-
-gcc -o _out/{_sPlatform}_{_sOpt}/2dmark.elf  "_out/{_sPlatform}_{_sOpt}/asm.o" "_out/{_sPlatform}_{_sOpt}/App.a" 
+gcc -o _out/{_sPlatform}_{_sOpt}/App.elf  "_out/{_sPlatform}_{_sOpt}/asm.o" "_out/{_sPlatform}_{_sOpt}/App.a" 
 -{vIncl}
 -{vFlag}
 -Wl,-T,"../lib/metalkit/image.ld"
--Wl,-Ttext=0x20000
 -Wl,--gc-sections -ffunction-sections -fdata-sections
 -nostdlib
--fleading-underscore
->
-;ld -o _out/{_sPlatform}_{_sOpt}/2dmark.elf  "_out/{_sPlatform}_{_sOpt}/asm.o" "_out/{_sPlatform}_{_sOpt}/App.a" 
-;-nostdlib -T "../lib/metalkit/image.ld"
 >
 ;ld -o obj/cpp_{_sPlatform}_{_sOpt}/App.elf  "_out/{_sPlatform}_{_sOpt}/asm.o" "E:\Data\setting\vmware_svga\cwc\obj\cpp_Windows_Debug\examples\2dmark\main.o"
-
-
 ;https://stackoverflow.com/questions/30939593/mingws-ld-cannot-perform-pe-operations-on-non-pe-output-file
 ;http://www.independent-software.com/linking-a-flat-binary-from-c-with-mingw.html
 ;-m32 -nostdlib  -o  "_out/{_sPlatform}_{_sOpt}/App.img"  "_out/{_sPlatform}_{_sOpt}/App.a" "../lib/metalkit/boot.S"
 ;-Wl,-T,"../lib/metalkit/image.ld"
 ;-Wl,--gc-sections -ffunction-sections -fdata-sections
-;-g
 >
-;objcopy -O binary   _out/{_sPlatform}_{_sOpt}/2dmark.elf  _out/{_sPlatform}_{_sOpt}/2dmark.img
-;objcopy -O binary  -j .boot -j .data  -j .text  -j .bss   _out/{_sPlatform}_{_sOpt}/2dmark.elf  _out/{_sPlatform}_{_sOpt}/2dmark.img
-objcopy -O binary   _out/{_sPlatform}_{_sOpt}/2dmark.elf  _out/{_sPlatform}_{_sOpt}/2dmark.img
-;objcopy  -I binary -O elf32-i386 -B i386  _out/{_sPlatform}_{_sOpt}/2dmark.elf  _out/{_sPlatform}_{_sOpt}/2dmark.img
+objcopy -O binary   _out/{_sPlatform}_{_sOpt}/App.elf  _out/{_sPlatform}_{_sOpt}/App.img
 >
-;objdump -f  _out/{_sPlatform}_{_sOpt}/2dmark.img
-;objdump  -m i386 -b  binary  -D _out/{_sPlatform}_{_sOpt}/2dmark.img
+objdump -f  _out/{_sPlatform}_{_sOpt}/App.elf
 >
-;objdump -m i386 -b  binary  -D  _out/{_sPlatform}_{_sOpt}/ori.img
-;objdump -m i386 -b  binary  -s _out/{_sPlatform}_{_sOpt}/ori.img
-;objdump -m i386 -b  binary  -F _out/{_sPlatform}_{_sOpt}/ori.img
+objdump -h _out/{_sPlatform}_{_sOpt}/App.elf
 >
-objdump -f  _out/{_sPlatform}_{_sOpt}/2dmark.elf
->
-objdump -h _out/{_sPlatform}_{_sOpt}/2dmark.elf
->
-;Link a temp PE file
-;ld -o obj/cpp_{_sPlatform}_{_sOpt}/App.temp obj/cpp_{_sPlatform}_{_sOpt}/App.a
-; --image-base 0xFF000 --oformat binary 
-;-Wl,--gc-sections -ffunction-sections -fdata-sections
-;-nostdlib -Wl,-T,"../lib/metalkit/image.ld"
->
-;Transform it in a non-PE:
-;objcopy -O binary  obj/cpp_{_sPlatform}_{_sOpt}/App.temp obj/cpp_{_sPlatform}_{_sOpt}/App.bin
-;-T "../lib/metalkit/image.ld" 
->
-;Copy the result
-;-#Copy obj/cpp_{_sPlatform}_{_sOpt}/App.bin _out/{_sPlatform}_{_sOpt}/App.bin
+;Copy the Rc
+-#Copy Rc/ _out/{_sPlatform}_{_sOpt}/
 
 >
 ;-#Run

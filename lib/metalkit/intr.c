@@ -184,8 +184,7 @@ Intr_Init(void)
       tramp++;
    }
 
-  // asm volatile ("lidt IDTDesc");
-   asm volatile ("lidt _IDTDesc");//TODO
+   asm volatile ("lidt IDTDesc");
 
    typedef struct {
       uint8 port, data;
