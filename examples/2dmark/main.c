@@ -134,7 +134,7 @@ runBenchmark()
  int __main(){
 	 return 0;
  }
-#include "apm.h"
+ #include "apm.h"
 #include "bios.h"
 #include "intr.h"
 
@@ -142,13 +142,13 @@ extern int main(void) asm("main");
 int main(void)
 {
 	   //APM_Init();
-	//  while(1){}	
+	//	while(1){}	
 
      Intr_SetFaultHandlers(SVGA_DefaultFaultHandler);
 	  
 	  Intr_Init();
    ConsoleVGA_Init();
-		//    while(1){}	
+	//		while(1){}	
 	//  while(1){}	
  
    

@@ -4,4 +4,4 @@
 >
 -{_sDynamic}="dll"
 >
--#Run Build.cwc -{_wToolchain}= VLianceTool/LibRT
+-#Run Build.cwc -{_wToolchain}= VLianceTool/LibRT[Ghost]
