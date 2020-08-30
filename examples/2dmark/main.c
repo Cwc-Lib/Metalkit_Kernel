@@ -131,13 +131,12 @@ runBenchmark()
  *    Initialization and results reporting.
  */
 
- int __main(){
-	 return 0;
- }
+
  #include "apm.h"
 #include "bios.h"
 #include "intr.h"
 
+ int __main(){return 0;}
 extern int main(void) asm("main");
 int main(void)
 {

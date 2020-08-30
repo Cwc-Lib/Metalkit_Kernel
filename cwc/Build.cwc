@@ -21,7 +21,8 @@
 -{vFlag}
 >
 ;Build Main Example
--c ../examples/2dmark/ -o obj/cpp_{_sPlatform}_{_sOpt}/examples/2dmark/
+-c ../metalkit_example/console/ -o obj/cpp_{_sPlatform}_{_sOpt}/examples/2dmark/
+;-c ../examples/2dmark/ -o obj/cpp_{_sPlatform}_{_sOpt}/examples/2dmark/
 -{vIncl}
 -{vFlag}
 -fleading-underscore

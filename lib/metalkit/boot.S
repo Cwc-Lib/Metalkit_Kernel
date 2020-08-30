@@ -285,7 +285,7 @@ copy_enter32:
 
         mov     $DISK_BUFFER, %esi
         mov     BIOS_PTR(dest_address), %edi
-        mov     $DISK_BUFFER_SIZE, %ecx
+        mov     $(DISK_BUFFER_SIZE >> 2), %ecx
         rep movsl
 
         /*
