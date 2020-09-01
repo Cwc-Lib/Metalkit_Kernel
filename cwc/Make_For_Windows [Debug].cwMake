@@ -42,4 +42,4 @@
 ;-{sExample}="vmware__video-sync"
 
 >
--#Run Build.cwc -{_wToolchain}= VLianceTool/LibRT[Elf]
+-#Run Build.cwc -{_wToolchain}= VLianceTool/Elf_RT
