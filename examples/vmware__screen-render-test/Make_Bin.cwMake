@@ -1,0 +1,12 @@
+;Register Cwc before using a .cwmake
+>
+-{_sOpt}="Debug"
+>
+-{pRC_out}:=./
+>
+-{_wToolchain}= VLianceTool/Elf_RT
+>
+objcopy -I binary -O elf32-i386 -B i386  expected-results.png  {pRC_out}expected-results.o
+>
+objcopy -I binary -O elf32-i386 -B i386  wols4x3.yuv.z {pRC_out}wols4x3.o
+>

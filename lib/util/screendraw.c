@@ -45,7 +45,7 @@
 #include "screendraw.h"
 #include "console_vga.h"
 
-DECLARE_DATAFILE(fontData, ______lib_util_bitstream_vera_15_font_z);
+DECLARE_DATAFILE(fontData, bitstream_vera_15_font_z);
 
 #define TILE_SIZE            64
 #define TILE_BUFFER_PIXELS   (TILE_SIZE * TILE_SIZE)

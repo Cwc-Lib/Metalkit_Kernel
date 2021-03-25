@@ -8,3 +8,5 @@
 >
 objcopy -I binary -O elf32-i386 -B i386  screen.png  {pRC_out}screen.o
 >
+objcopy -I binary -O elf32-i386 -B i386  wols4x3.yuv.z {pRC_out}wols4x3.o
+>
