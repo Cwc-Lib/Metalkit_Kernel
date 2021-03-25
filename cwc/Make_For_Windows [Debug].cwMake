@@ -10,7 +10,7 @@
 ;-{sExample}="metalkit__threading"
 ;-{sExample}="metalkit__timer"
 ;-{sExample}="metalkit__vbe-info"
--{sExample}="metalkit__vbe-palette"
+;-{sExample}="metalkit__vbe-palette"
 ;-{sExample}="metalkit__vbe-simple"
 ;-{sExample}="vmware__2dmark"
 ;-{sExample}="vmware__backdoor-tclo"

@@ -14,6 +14,8 @@
 	-Os -fweb
 	-march=i686 -ffast-math -funsafe-math-optimizations
 >
+-{pObj}=obj/cpp_{_sPlatform}_{_sOpt}/examples/{sExample}/
+>
 ;Copy the Rc & Create Output folder
 -#Copy Rc/ _out/{_sPlatform}_{_sOpt}/{sExample}/
 >
@@ -23,12 +25,16 @@
 -{vFlag}
 >
 ;Build Main Example
--c ../examples/{sExample}/ -o obj/cpp_{_sPlatform}_{_sOpt}/examples/{sExample}/
+-c ../examples/{sExample}/ -o {pObj}
 -{vIncl}
 -{vFlag}
 >
+;Optional Build RC
+-{pRC_out}=../../cwc/{pObj} >
+-#Run  ../examples/{sExample}/Make_Bin.cwMake
+>
 ;Group Example
--o obj/cpp_{_sPlatform}_{_sOpt}/examples/{sExample}/  -#To obj/cpp_{_sPlatform}_{_sOpt}/example.a
+-o {pObj}  -#To obj/cpp_{_sPlatform}_{_sOpt}/example.a
 >
 ;Group Lib
 -o obj/cpp_{_sPlatform}_{_sOpt}/lib/  -#To obj/cpp_{_sPlatform}_{_sOpt}/lib.a
