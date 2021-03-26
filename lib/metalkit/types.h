@@ -65,18 +65,18 @@ typedef struct {
 
 #define MIN(a, b)   ((a) < (b) ? (a) : (b))
 #define MAX(a, b)   ((a) > (b) ? (a) : (b))
-
+/*
 static inline void
 memcpy(void *dest, const void *src, uint32 size)
 {
    asm volatile ("cld; rep movsb" : "+c" (size), "+S" (src), "+D" (dest) :: "memory");
 }
-
 static inline void
 memset(void *dest, uint8 value, uint32 size)
 {
    asm volatile ("cld; rep stosb" : "+c" (size), "+D" (dest) : "a" (value) : "memory");
 }
+*/
 
 static inline void
 memcpy16(void *dest, const void *src, uint32 size)

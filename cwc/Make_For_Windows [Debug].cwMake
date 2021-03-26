@@ -42,6 +42,7 @@
 ;-{sExample}="vmware__video-formats"
 ;-{sExample}="vmware__screen-render-test"
 ;-{sExample}="vmware__video-sync"
-
+>
+-#Run ../XE-Loader/XE_[Debug].cwMake
 >
 -#Run Build.cwc -{_wToolchain}= VLianceTool/Elf_RT

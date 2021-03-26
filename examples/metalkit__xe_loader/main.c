@@ -8,7 +8,8 @@
 #include "console_vga.h"
 #include "datafile.h"
 #include "intr.h"
-#include "XE-Loader.h"
+//#include "XE-Loader.h"
+#include "XE/XE.h"
 
 
 DECLARE_DATAFILE(myFile, sample_txt);
@@ -65,16 +66,18 @@ main(void)
    ConsoleVGA_Init();
    Intr_Init();
    Intr_SetFaultHandlers(Console_UnhandledFault);
+
+
+	Xe_Load("Test.c");
 	
-	Xe_LoadFile("Test.c");
-	
+	_printl("Finish");
 	
    //len = DataFile_Decompress(myFile, output_buffer, sizeof output_buffer);
    //output_buffer[len] = '\0';
    //Console_WriteString(output_buffer);
    
    //Direct load
-   Console_WriteString(myFile->ptr);
+   //Console_WriteString(myFile->ptr);
    Console_Flush();
 
    return 0;

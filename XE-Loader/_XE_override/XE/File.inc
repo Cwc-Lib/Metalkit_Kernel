@@ -22,6 +22,7 @@
 
 File Xe_LoadFile(const char* _sFullPath)
 {
+
 	if(_sFullPath == 0){
 		_printl("Error: No file to load.");
 		return (File){};

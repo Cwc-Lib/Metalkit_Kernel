@@ -10,7 +10,9 @@
 -I ../lib/util/
 -I ../lib/vmware/
 -I ../XE-Loader/
+-I ../XE-Loader/_XE_submodule/src/
 -{vFlag}=
+	-DUSE_ATTRIBUTE_CALL_TYPE
 	-m32 -ffreestanding -nostdinc -fno-stack-protector
 	-Os -fweb
 	-march=i686 -ffast-math -funsafe-math-optimizations
