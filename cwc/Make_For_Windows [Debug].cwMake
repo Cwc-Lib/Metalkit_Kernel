@@ -2,6 +2,7 @@
 >
 -{_sOpt}="Debug"
 >
+-{sExample}="metalkit__xe_loader"
 ;-{sExample}="metalkit__apm-test"
 ;-{sExample}="metalkit__console"
 ;-{sExample}="metalkit__datafile"
@@ -24,7 +25,7 @@
 ;-{sExample}="vmware__noscreen-cursor"
 ;-{sExample}="vmware__pong"
 ;-{sExample}="vmware__present-readback"
--{sExample}="vmware__resolution-set"
+;-{sExample}="vmware__resolution-set"
 ;-{sExample}="vmware__rt-gamma-test"
 ;-{sExample}="vmware__screen-annotation"
 ;-{sExample}="vmware__screen-cursor"

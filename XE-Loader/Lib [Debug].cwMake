@@ -1,0 +1,21 @@
+;Register Cwc before using a .cwmake
+>
+-{_sOpt}="Debug"
+>
+-{_wToolchain}= VLianceTool/Elf_RT
+>
+-{pXE}=_XE_submodule/
+>
+-c {pXE}/src/ -o obj/DJ_{_sOpt}/
+	
+	-DWinLastError -I _XE_override/ -I {pXE}/include/ -I {pXE}/src/
+	-DD_MemoryCheck
+	-DD_REDIRECT_STDERR
+	-DUSE_ATTRIBUTE_CALL_TYPE
+	-Werror=implicit-function-declaration
+	-Werror=int-conversion
+	-Werror=incompatible-pointer-types
+>
+;Generate Lib .a
+-o obj/DJ_{_sOpt}/XE/ -#To Lib/XE_{_sOpt}/libXE.a
+>
