@@ -68,7 +68,7 @@ main(void)
    Intr_SetFaultHandlers(Console_UnhandledFault);
 
 
-	Xe_Load("Test.c");
+	Xe_Load("Test.exe");
 	
 	_printl("Finish");
 	

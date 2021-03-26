@@ -6,5 +6,5 @@
 >
 -{_wToolchain}= VLianceTool/Elf_RT
 >
-objcopy -I binary -O elf32-i386 -B i386  sample.txt {pRC_out}sample.txt.o
+objcopy -I binary -O elf32-i386 -B i386  ElieDraw.exe {pRC_out}ElieDraw.exe.o
 >

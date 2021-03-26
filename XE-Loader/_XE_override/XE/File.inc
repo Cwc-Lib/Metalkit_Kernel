@@ -19,10 +19,31 @@
 * Main goal is to be portable which does not relying on system functions
 * 
 */
+//#include "types.h"
+//#include "puff.h"
+
+typedef struct DataFile {
+   uint8_t *ptr;
+   uint32_t size;
+} DataFile;
+
+#define DECLARE_DATAFILE(symbol, filename)          \
+   extern uint8_t _binary_ ## filename ## _start[];   \
+   extern uint8_t _binary_ ## filename ## _size[];    \
+   static const DataFile symbol[1] = {{             \
+      (uint8_t*) _binary_ ## filename ## _start,      \
+      (uint32_t) _binary_ ## filename ## _size,       \
+   }}
+
+
+DECLARE_DATAFILE(myExe, ElieDraw_exe);
 
 File Xe_LoadFile(const char* _sFullPath)
 {
 
+	return (File){.data=(char*)myExe->ptr, .size=myExe->size, .path=_mallocpy(_sFullPath, strlen(_sFullPath)+1, char)};
+	
+/*
 	if(_sFullPath == 0){
 		_printl("Error: No file to load.");
 		return (File){};
@@ -43,11 +64,13 @@ File Xe_LoadFile(const char* _sFullPath)
 		
 		fclose(f);
 		return (File){.data=(char*)_aData, .size=_nSize, .path=_mallocpy(_sFullPath, strlen(_sFullPath)+1, char)};
+	
+	
 	}else{
 		err_print("Error Loading File [%s] (%s)", _sFullPath, strerror(errno));
 	}
 	
-	return (File){};
+	return (File){};*/
 }
 
 void Xe_FreeFile(File* file){

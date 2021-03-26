@@ -15,6 +15,7 @@
 	-Werror=implicit-function-declaration
 	-Werror=int-conversion
 	-Werror=incompatible-pointer-types
+	;-I ../lib/metalkit/
 >
 ;Generate Lib .a
 -o obj/DJ_{_sOpt}/XE/ -#To Lib/XE_{_sOpt}/libXE.a

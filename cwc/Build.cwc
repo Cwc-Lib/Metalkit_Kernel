@@ -46,7 +46,7 @@ gcc  -o  obj/cpp_{_sPlatform}_{_sOpt}/asm.o -c  "../lib/metalkit/boot.S"
 -{vFlag}
 >
 gcc -o _out/{_sPlatform}_{_sOpt}/{sExample}/{sExample}.elf  "obj/cpp_{_sPlatform}_{_sOpt}/asm.o" "obj/cpp_{_sPlatform}_{_sOpt}/example.a"  "obj/cpp_{_sPlatform}_{_sOpt}/lib.a" "obj/cpp_{_sPlatform}_{_sOpt}/example.a"
-"../XE-Loader/Lib/XE_Debug/libXE.a"
+"../XE-Loader/Lib/XE_Debug/libXE.a" "obj/cpp_{_sPlatform}_{_sOpt}/example.a" 
 
 "libc.a"
 "libm.a"
