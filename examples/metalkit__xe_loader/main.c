@@ -15,6 +15,48 @@ DECLARE_DATAFILE(myFile, sample_txt);
 
 static char output_buffer[64*1024];
 
+
+void fputc(){
+	
+}
+void fputs(){
+	
+}
+
+void cpc_Creer_Contexte(){
+	
+}
+
+void cpc_Obtenir_Zone_Contexte(){
+	
+}
+
+void cpc_Blitter(){
+	
+}
+void dl_iterate_phdr(){
+	
+}
+void __sched_getscheduler(){
+	
+}
+void __sched_getparam(){
+	
+}
+void sched_get_priority_max(){
+	
+}
+void sched_get_priority_min(){
+	
+}
+void __sched_setscheduler(){
+	
+}
+
+
+
+
+
 int
 main(void)
 {
