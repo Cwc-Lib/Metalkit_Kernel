@@ -232,6 +232,7 @@ Console_HexDump(uint32 *data, uint32 startAddr, uint32 numWords)
 void
 Console_UnhandledFault(int vector)
 {
+
    IntrContext *ctx = Intr_GetContext(vector);
 
    /*
@@ -267,8 +268,8 @@ Console_UnhandledFault(int vector)
    Console_HexDump((void*)ctx->esp, ctx->esp, 64);
 
    Console_Flush();
-   Intr_Disable();
-   Intr_Halt();
+	Intr_Disable();
+	Intr_Halt();
 }
 
 
@@ -286,6 +287,6 @@ Console_Panic(const char *fmt, ...)
    Console_WriteString("Panic:\n");
    Console_FormatV(&fmt);
    Console_Flush();
-   Intr_Disable();
-   Intr_Halt();
+	Intr_Disable();
+	Intr_Halt();
 }

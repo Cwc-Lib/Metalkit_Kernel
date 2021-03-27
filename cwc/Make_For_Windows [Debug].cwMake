@@ -46,3 +46,6 @@
 -#Run ../XE-Loader/XE_[Debug].cwMake
 >
 -#Run Build.cwc -{_wToolchain}= VLianceTool/Elf_RT_32
+>
+gdb {pOut}/{sExample}.elf  --ex "target remote localhost:8832"
+>

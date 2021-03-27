@@ -104,6 +104,8 @@ Intr_Restore(Bool flag) {
 
 static inline void
 Intr_Halt(void) {
+	//IF inside VM, just pause
+	while(1){} //TODO Just in VM	
    asm volatile ("hlt");
 }
 

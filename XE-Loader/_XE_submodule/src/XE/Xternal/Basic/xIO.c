@@ -40,18 +40,7 @@ fn void _exit_SUCCESS(){
 //inline __cdecl  int gzx_printf(const char *format, ...){
 __attribute__((fastcall)) void Console_WriteString(const char *str);
 fn int _printf(const char*_format, ...){
-/*
-	  va_list _arg;
-	  
-	  va_start( _arg, _format );
-	  int _ret = vprintf(  _format, _arg );
-	  
-	  va_end( _arg );
-	  
-	  Console_WriteString("111111111PRINT!");
-	  
-	  fflush(stdout);*/
-	
+
 	//TODO optimise & size check
 	char BUFFER[4096] = {0};
 	int ret = 0;
@@ -61,25 +50,23 @@ fn int _printf(const char*_format, ...){
 	va_end (arg);
 
 	  Console_WriteString(BUFFER);
-	  
+	    int i;while(i<300000000){i++;}
 	  return ret;
 }
 
 fn int err_printf(const char*_format, ...){
 	  
-	  Console_WriteString("err_printf!");
-	va_list _arg;
+	//TODO optimise & size check
+	char BUFFER[4096] = {0};
+	int ret = 0;
+	va_list arg;
+	va_start (arg, _format);
+		 ret = vsprintf (BUFFER, _format, arg);
+	va_end (arg);
 
-	va_start( _arg, _format );
-#ifdef D_REDIRECT_STDERR
-	int _ret = vprintf( _format, _arg );
-#else
-	int _ret = vfprintf(stderr, _format, _arg );
-#endif
-	va_end( _arg );
-
-	fflush(stderr);
-	return _ret;
+	  Console_WriteString(BUFFER);
+	 int i;while(i<300000000){i++;}
+	  return ret;
 }
 
 #ifdef D_Platform_Android

@@ -50,9 +50,8 @@ void sched_get_priority_max(){
 void sched_get_priority_min(){
 	
 }
-void __sched_setscheduler(){
-	
-}
+void __sched_setscheduler(){}
+//void __libc_longjmp(){}
 
 
 
@@ -65,10 +64,14 @@ main(void)
 
    ConsoleVGA_Init();
    Intr_Init();
-   Intr_SetFaultHandlers(Console_UnhandledFault);
+   //Intr_SetFaultHandlers(Console_UnhandledFault);
 
+	_printl("Xe_Load");
+	 //  Console_Flush();
 
-	Xe_Load("Test.exe");
+	
+			XE_Module*  m = Xe_Load("Test.exe");
+		//	Xe_ExecuteMain(m);
 	
 	_printl("Finish");
 	

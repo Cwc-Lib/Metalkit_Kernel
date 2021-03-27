@@ -18,6 +18,7 @@
 	-march=i686 -ffast-math -funsafe-math-optimizations
 >
 -{pObj}=obj/cpp_{_sPlatform}_{_sOpt}/examples/{sExample}/
+-{pOut}=_out/{_sPlatform}_{_sOpt}/{sExample}/
 >
 ;Copy the Rc & Create Output folder
 -#Copy Rc/ _out/{_sPlatform}_{_sOpt}/{sExample}/
@@ -72,9 +73,9 @@ gcc -o _out/{_sPlatform}_{_sOpt}/{sExample}/{sExample}.elf  "obj/cpp_{_sPlatform
 ;-Wl,-T,"../lib/metalkit/image.ld"
 ;-Wl,--gc-sections -ffunction-sections -fdata-sections
 >
-objcopy -O binary   _out/{_sPlatform}_{_sOpt}/{sExample}/{sExample}.elf  _out/{_sPlatform}_{_sOpt}/{sExample}/App.img
+objcopy -O binary   {pOut}/{sExample}.elf  _out/{_sPlatform}_{_sOpt}/{sExample}/App.img
 >
 ;objdump -f  _out/{_sPlatform}_{_sOpt}/App.elf
-objdump -h _out/{_sPlatform}_{_sOpt}/{sExample}/{sExample}.elf
+objdump -h {pOut}/{sExample}.elf
 >
 ;-#Run
