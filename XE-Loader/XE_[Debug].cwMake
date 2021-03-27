@@ -2,7 +2,7 @@
 >
 -{_sOpt}="Debug"
 >
--{_wToolchain}= VLianceTool/Elf_RT
+-{_wToolchain}= VLianceTool/Elf_RT_32
 >
 -{pXE}=_XE_submodule/
 >

@@ -4,7 +4,7 @@
 >
 -{pRC_out}:=./
 >
--{_wToolchain}= VLianceTool/Elf_RT
+-{_wToolchain}= VLianceTool/Elf_RT_32
 >
 objcopy -I binary -O elf32-i386 -B i386  sample.txt {pRC_out}sample.txt.o
 >

@@ -45,4 +45,4 @@
 >
 -#Run ../XE-Loader/XE_[Debug].cwMake
 >
--#Run Build.cwc -{_wToolchain}= VLianceTool/Elf_RT
+-#Run Build.cwc -{_wToolchain}= VLianceTool/Elf_RT_32
