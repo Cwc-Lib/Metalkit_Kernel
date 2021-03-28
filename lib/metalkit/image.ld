@@ -24,7 +24,7 @@ ENTRY(_start)
  * Stack starts at the top of the usable portion of the first 1MB, and
  * grows downward.
  */
-_stack = 0x9fffc;
+_stack = 0x9fffc; //(640k) "Low memory" is the available RAM below 1MB, and usually below 640KB
 
 SECTIONS
 {
