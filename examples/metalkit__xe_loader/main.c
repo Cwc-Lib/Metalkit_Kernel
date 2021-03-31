@@ -55,8 +55,6 @@ void __sched_setscheduler(){}
 
 
 
-
-
 int
 main(void)
 {
@@ -71,9 +69,14 @@ main(void)
 
 	
 			XE_Module*  m = Xe_Load("Test.exe");
-		//	Xe_ExecuteMain(m);
+			Xe_ExecuteMain(m);
+	
+	
+	
 	
 	_printl("Finish");
+	
+	while(1){} //halt
 	
    //len = DataFile_Decompress(myFile, output_buffer, sizeof output_buffer);
    //output_buffer[len] = '\0';

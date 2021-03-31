@@ -109,6 +109,7 @@ ConsoleVGAMoveTo(int x, int y)
 static fastcall void
 ConsoleVGAClear(void)
 {
+
    ConsoleVGAObject *self = gConsoleVGA;
    uint8 *fb = VGA_TEXT_FRAMEBUFFER;
    int i, j;

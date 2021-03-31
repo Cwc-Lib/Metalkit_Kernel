@@ -535,6 +535,13 @@ void
 XE_Module* 
 	Load_Module_PE(XE_Module* _module) 
 {
+	if(!_module){
+		err_print("XE_Module is null");
+	}else{
+	err_print("****XE: %d", _module->file.size);
+	}
+		err_print("****XE: %p", _module->file.data);
+		
 	MEMORYMODULE* m = Load_Module_PE_MEM( _module->file.data, _module->file.size);
 	_module->handle = m;
 	
@@ -554,6 +561,10 @@ XE_Module*
 MEMORYMODULE* 
 	Load_Module_PE_MEM(void* data, size_t size) 
 {
+_printl("|Load_Module_PE_MEM");
+_printl("|--");
+_printl("|--");
+_printl("|--");
 	MEMORYMODULE* result = NULL;
 	PIMAGE_DOS_HEADER dos_header;
 	PIMAGE_NT_HEADERS old_header;

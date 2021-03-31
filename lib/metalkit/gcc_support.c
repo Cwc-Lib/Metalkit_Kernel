@@ -44,5 +44,9 @@ memcpy(void *dest, const void *src, unsigned long size)
 void
 memset(void *dest, unsigned char value, unsigned long size)
 {
-   asm volatile ("cld; rep stosb" : "+c" (size), "+D" (dest) : "a" (value) : "memory");
+	char* _dest = dest;
+	for(unsigned long i=0;i<size;i++){
+		_dest[i] = value;
+	}
+	//asm volatile ("cld; rep stosb" : "+c" (size), "+D" (dest) : "a" (value) : "memory"); //Not working!?
 }

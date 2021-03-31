@@ -19,7 +19,7 @@
 void* imp_malloc( size_t size ){
 	showfunc_opt("malloc( size: %d )", size); 
 
-	void* ret =  malloc(size);
+	void* ret =  xx_malloc(size);
 	if(!ret){
 		showinf("Fail to malloc( size: %d )", size);
 	}	

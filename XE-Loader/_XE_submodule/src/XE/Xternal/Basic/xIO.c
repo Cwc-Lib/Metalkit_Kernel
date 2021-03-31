@@ -37,9 +37,14 @@ fn void _exit_FAILURE(){
 fn void _exit_SUCCESS(){
 	exit(EXIT_SUCCESS);
 }
+
+char* gdb_print; //gdb possible Watch point
+
+
 //inline __cdecl  int gzx_printf(const char *format, ...){
 __attribute__((fastcall)) void Console_WriteString(const char *str);
 fn int _printf(const char*_format, ...){
+
 
 	//TODO optimise & size check
 	char BUFFER[4096] = {0};
@@ -50,7 +55,9 @@ fn int _printf(const char*_format, ...){
 	va_end (arg);
 
 	  Console_WriteString(BUFFER);
-	    int i;while(i<300000000){i++;}
+	  gdb_print = BUFFER;
+	   gdb_print = 0;
+	   // int i;while(i<300000000){i++;}
 	  return ret;
 }
 
@@ -65,7 +72,9 @@ fn int err_printf(const char*_format, ...){
 	va_end (arg);
 
 	  Console_WriteString(BUFFER);
-	 int i;while(i<300000000){i++;}
+	  gdb_print = BUFFER;
+	     gdb_print = 0;
+	// int i;while(i<300000000){i++;}
 	  return ret;
 }
 

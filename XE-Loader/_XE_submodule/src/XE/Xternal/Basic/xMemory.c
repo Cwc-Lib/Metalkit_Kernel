@@ -47,11 +47,51 @@ fn int atExit_ShowMemLeak(){
 #endif
 
 
+
+
+extern int _end;
+uint32_t alloc_addr = (uint32_t)&_end;
+
+#define PAGE_SIZE 4096
+#define ALIGN     0xFFFFF000
+#define ALIGN_INC PAGE_SIZE
+
+void* kmalloc(size_t size, int align, uint32_t* phys_addr){
+	
+	 unsigned long tmp;
+
+    if (align && (alloc_addr & ALIGN))
+    {
+        alloc_addr &= ALIGN;
+        alloc_addr += ALIGN_INC;
+    }
+    if (phys_addr)
+        *phys_addr = alloc_addr;
+
+    tmp = alloc_addr;
+    alloc_addr += size;
+
+    return (void *)tmp;
+}
+
+
+
+
+
 fn void* xx_malloc(size_t size){
 	#ifdef D_MemoryCheck
 	Alloc_Add();
 	#endif
-	return malloc(size);
+	
+	void* ret = kmalloc(size, 0, 0);
+		
+	#ifdef D_Debug
+	if(!ret) {
+		err_print("Unable to malloc: size[%d]", size);
+	}
+	#endif
+	
+	return ret;
 };
 fn void* x_malloc(size_t num, size_t size){
 	return xx_malloc(num * size);
@@ -60,7 +100,22 @@ fn void* x_calloc(size_t num, size_t size){
 	#ifdef D_MemoryCheck
 	Alloc_Add();
 	#endif
-	return calloc(num, size);
+	
+	#if HAVE_Calloc
+		#error	
+		return calloc(num, size);
+	#else
+		void* ret = xx_malloc(size*num);
+		 memset(ret, 0, size*num);
+	#endif
+	
+	#ifdef D_Debug
+	if(!ret) {
+		err_print("Unable to calloc: num[%d] size[%d]", num, size);
+	}
+	#endif
+	
+	return ret;
 };
 fn void* x_mallocpy(void* src, size_t num, size_t size){
 	#ifdef D_MemoryCheck
